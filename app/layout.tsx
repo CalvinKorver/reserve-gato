@@ -1,4 +1,5 @@
 import '@/app/ui/global.css';
+import { Analytics } from "@vercel/analytics/react"
 
 
 export default function RootLayout({
@@ -9,6 +10,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
+      <Analytics />
     </html>
   );
 }
