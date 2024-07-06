@@ -7,20 +7,21 @@ import SuccessVisual from './SuccessVisual';
 import Welcome from './Welcome';
 import ReservationFormFields from './ReservationFormFields';
 
+const FORM = 'form';
+const RESULT = 'result';
+const WELCOME = 'welcome';
+
 const ReservationForm = () => {
   const [response, setResponse] = useState('');
   const [text, setText] = useState('');
-  const [pageState, setPageState] = useState('welcome');
+  const [pageState, setPageState] = useState(WELCOME);
   const [translation, setTranslation] = useState('');
   const [language, setLanguage] = useState('');
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
   const [restaurantName, setRestaurantName] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  const FORM = 'form';
-  const RESULT = 'result';
-  const WELCOME = 'welcome';
 
   const handleBack = () => {
     setPageState(FORM);
@@ -31,7 +32,7 @@ const ReservationForm = () => {
   }
 
   const handleSubmit = async (text: string, language: string, restaurantName: string, time: string, date: string) => {
-    console.log(text);
+    setLoading(true);
     setDate(date);
     setLanguage(language);
     setTime(time);
@@ -50,6 +51,7 @@ const ReservationForm = () => {
       if (response.ok) {
         const responseText = await parseResponse(response);
         setTranslation(responseText);
+        setLoading(false);
         setPageState(RESULT);
       } else {
         // Handle the error
@@ -72,12 +74,17 @@ const ReservationForm = () => {
           <img src="/logo.png" alt="Reserve Gato" className="h-40 w-40" />
         </div>
         {pageState === WELCOME && <Welcome onGetStarted={handleGetStarted}/>}
-        {pageState === FORM && <ReservationFormFields handleSubmitParent={(text:string, 
+        {pageState === FORM && <ReservationFormFields 
+        loading={loading}
+        handleSubmitParent={(text:string, 
           language: string, 
           restaurantName: string, 
           time: string, 
           date:string,
           ) => handleSubmit(text, language, restaurantName, time, date)}/> }
+          <div className={!loading ? "hidden" : "visible"} >
+          </div>
+          
         {pageState === RESULT && <SuccessVisual 
           location={restaurantName}
           translation={translation}

@@ -2,15 +2,14 @@
 
 import React, { FormEvent } from 'react';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import SuccessVisual from './SuccessVisual';
-import Welcome from './Welcome';
+import LoadingSpinner from './LoadingSpinner';
 
 interface ReservationFormFieldsProps {
+    loading: boolean,
     handleSubmitParent: (text: string, language: string, restaurantName: string, time: string, date: string) => void;
   }
 
-const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({handleSubmitParent}) => {
+const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({loading, handleSubmitParent}) => {
 
   const [restaurantName, setRestaurantName] = useState('');
   const [time, setTime] = useState('');
@@ -101,13 +100,19 @@ return (
         />
       </div>
       <div className="flex items-center justify-center">
+        <div className={!loading? "visible" : "hidden"}>
         <button
           type="submit"
           className="mt-6 focus:shadow-outline rounded-md bg-slate-800 px-4 py-2 font-medium text-white hover:bg-blue-700 focus:outline-none"
         >
           Create Reservation
         </button>
+        </div>
+        <div className={loading ? "visible" : "hidden"}>
+          <LoadingSpinner />
+        </div>
       </div>
+      
     </form>
   )
 }
