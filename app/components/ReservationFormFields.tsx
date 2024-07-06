@@ -15,8 +15,8 @@ const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({handleSubm
   const [restaurantName, setRestaurantName] = useState('');
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
-  const [numberOfPeople, setNumberOfPeople] = useState(0);
-  const [language, setLanguage] = useState('spanish');
+  const [numberOfPeople, setNumberOfPeople] = useState(4);
+  const [language, setLanguage] = useState('');
 
     
   const handleSubmit = async (e: FormEvent) => {
@@ -28,7 +28,7 @@ const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({handleSubm
     date +
     ' at ' +
     time;
-    handleSubmitParent(text, language, restaurantName, time, date, text);
+    handleSubmitParent(text, language, restaurantName, time, date);
   }
 
 
@@ -41,7 +41,7 @@ return (
         <input
           id="restaurant-name"
           type="text"
-          placeholder="Canlis"
+          placeholder="Somewhere delicious"
           value={restaurantName}
           onChange={(e) => setRestaurantName(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
@@ -54,7 +54,7 @@ return (
         <input
           id="time"
           type="text"
-          placeholder="5:00pm"
+          placeholder='eg "5:00pm"'
           value={time}
           onChange={(e) => setTime(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
@@ -67,7 +67,8 @@ return (
         <input
           id="date"
           type="text"
-          placeholder="Tuesday, 5/14"
+          placeholder='eg "Tuesday, 5/14"'
+
           value={date}
           onChange={(e) => setDate(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
@@ -80,7 +81,7 @@ return (
         <input
           id="number-of-people"
           type="number"
-          placeholder="4"
+          placeholder='4'
           value={numberOfPeople}
           onChange={(e) => setNumberOfPeople(e.target.valueAsNumber)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
