@@ -1,5 +1,10 @@
-## Next.js App Router Course - Starter
+## Reserve Gato
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+A simple app that lets you input information to make a reservation at a restaurant in a different language.
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+
+
+#### To run locally:
+<ol>
+<li> npm install </li>
+<li> npm run dev </li>
