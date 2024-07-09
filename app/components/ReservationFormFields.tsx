@@ -32,9 +32,8 @@ const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({loading, h
     handleSubmitParent(text, language, restaurantName, time, date);
   }
 
-  const setDateFromDatepicker = (value:string) => {
-    const date = new Date(value);
-    setDate(format(date, "EEEE, MMMM do"))
+  const setDateFromDatepicker = (value:Date) => {
+    setDate(format(value, "EEEE, MMMM do"))
   }
     
 
@@ -75,7 +74,7 @@ return (
           Date
         </label>
         <DatepickerHolder
-         setDateFromDatepicker={(value:string) => setDateFromDatepicker(value)}
+         setDateFromDatepicker={(value:Date) => setDateFromDatepicker(value)}
          />
         {/* <input
           id="date"
