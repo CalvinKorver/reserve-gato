@@ -3,6 +3,8 @@
 import React, { FormEvent } from 'react';
 import { useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
+import DatepickerHolder from './Datepickerholder';
+import { format } from 'date-fns';
 
 interface ReservationFormFieldsProps {
     loading: boolean,
@@ -30,6 +32,11 @@ const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({loading, h
     handleSubmitParent(text, language, restaurantName, time, date);
   }
 
+  const setDateFromDatepicker = (value:string) => {
+    const date = new Date(value);
+    setDate(format(date, "EEEE, MMMM do"))
+  }
+    
 
 return (
     <form onSubmit={handleSubmit} className="w-64 mx-auto">
@@ -44,6 +51,7 @@ return (
           value={restaurantName}
           onChange={(e) => setRestaurantName(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          required
         />
       </div>
       <div className="mb-4">
@@ -51,19 +59,25 @@ return (
           Time
         </label>
         <input
+        
           id="time"
           type="text"
           placeholder='eg "5:00pm"'
           value={time}
           onChange={(e) => setTime(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          required
         />
       </div>
       <div className="mb-4">
+        
         <label className="mb-2 block text-sm font-medium text-gray-700" htmlFor="date">
           Date
         </label>
-        <input
+        <DatepickerHolder
+         setDateFromDatepicker={(value:string) => setDateFromDatepicker(value)}
+         />
+        {/* <input
           id="date"
           type="text"
           placeholder='eg "Tuesday, 5/14"'
@@ -71,7 +85,8 @@ return (
           value={date}
           onChange={(e) => setDate(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
-        />
+          required
+        /> */}
       </div>
       <div className="mb-4">
         <label className="mb-2 block text-sm font-medium text-gray-700" htmlFor="number-of-people">
@@ -84,6 +99,7 @@ return (
           value={numberOfPeople}
           onChange={(e) => setNumberOfPeople(e.target.valueAsNumber)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          required
         />
       </div>
       <div className="mb-4">
@@ -97,6 +113,7 @@ return (
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          required
         />
       </div>
       <div className="flex items-center justify-center">
