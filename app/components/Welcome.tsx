@@ -44,13 +44,13 @@ const Button = styled.button`
   }
 `;
 
-const SuccessVisual: React.FC<ReservationMessageProps> = ({ onGetStarted }) => {
+const Welcome: React.FC<ReservationMessageProps> = ({ onGetStarted }) => {
 
   const welcomeMessage = "Traveling to a foreign country can be difficult! 😫 Don’t let your language skills get in the way of going to that cool restaurant you found online. 😎 This app is designed to help you make that dinner reservation -easy peasy 🙌 ";
   const textSyle = "mb-7 text-slate-500";
   return (
       <div className="flex items-center justify-center bg-gray-50">
-        <div className="h-full text-left w-full max-w-sm rounded-lg bg-white p-8 md:h-fit">
+        <div className="h-full text-left w-full max-w-sm rounded-lg bg-white md:h-fit sm:h-full">
           <h1 className="mb-8 text-xl font-semibold">What is this?</h1>
           <p className={textSyle}>
             Traveling to a foreign country can be difficult! <span role="img" aria-label="thinking face">🤔</span>
@@ -71,7 +71,7 @@ const SuccessVisual: React.FC<ReservationMessageProps> = ({ onGetStarted }) => {
     );
 };
 
-export default SuccessVisual;
+export default Welcome;
 
 // What is this button on the Reserve page
 // Loading bar on API load
