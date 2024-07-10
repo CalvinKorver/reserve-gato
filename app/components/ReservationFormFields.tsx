@@ -22,13 +22,14 @@ const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({loading, h
     
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const text =
+    var text =
     'Hello, I would like to make a reservation for ' +
     numberOfPeople +
     ' on ' +
     date +
     ' at ' +
     time;
+    text += ". Please tell me if this time and date is available."
     handleSubmitParent(text, language, restaurantName, time, date);
   }
 
@@ -38,7 +39,7 @@ const ReservationFormFields: React.FC<ReservationFormFieldsProps> = ({loading, h
     
 
 return (
-    <form onSubmit={handleSubmit} className="w-64 mx-auto">
+    <form onSubmit={handleSubmit} className="w-auto">
       <div className="mb-4">
         <label className="mb-2 block text-sm font-medium text-gray-700" htmlFor="restaurant-name">
           Restaurant Name
@@ -61,7 +62,7 @@ return (
         
           id="time"
           type="text"
-          placeholder='eg "5:00pm"'
+          placeholder='7pm'
           value={time}
           onChange={(e) => setTime(e.target.value)}
           className="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"

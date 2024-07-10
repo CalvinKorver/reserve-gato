@@ -69,8 +69,8 @@ const ReservationForm = () => {
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-50">
-      <div className="h-full w-full max-w-md rounded-lg bg-white p-12 shadow-lg md:h-fit">
-        <div className="mb-6 flex justify-center">
+      <div className="w-full max-w-md rounded-lg bg-white p-12 shadow-lg h-screen md:h-fit">
+        <div className="mb-12 mt-0 md:mt-4 flex justify-center">
           <img src="/logo.png" alt="Reserve Gato" className="h-40 w-40" />
         </div>
         {pageState === WELCOME && <Welcome onGetStarted={handleGetStarted}/>}
@@ -82,8 +82,6 @@ const ReservationForm = () => {
           time: string, 
           date:string,
           ) => handleSubmit(text, language, restaurantName, time, date)}/> }
-          <div className={!loading ? "hidden" : "visible"} >
-          </div>
           
         {pageState === RESULT && <SuccessVisual 
           location={restaurantName}
@@ -96,7 +94,6 @@ const ReservationForm = () => {
       </div>
     </div>
   );
-  //   { location, date, time, languageTranslation, englishTranslation, onGoBack }
 };
 
 export default ReservationForm;

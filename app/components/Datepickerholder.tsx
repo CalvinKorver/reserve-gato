@@ -23,7 +23,8 @@ const DatepickerHolder: React.FC<DatepickerHolderProps> = ({
 
   return (
     <Datepicker
-      containerClassName="focus:shadow-outline w-full appearance-none rounded-md border-slate-400 leading-tight text-gray-700 shadow focus:outline-none"
+      containerClassName="focus:shadow-outline appearance-none rounded-md border-slate-400 leading-tight text-gray-700 shadow focus:outline-none"
+      toggleClassName="hidden"
       primaryColor={'amber'}
       asSingle={true}
       useRange={false}
