@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
+import { useState } from 'react';
 
 
 interface ReservationMessageProps {
@@ -15,6 +14,12 @@ interface ReservationMessageProps {
 
 //   { location, date, time, languageTranslation, englishTranslation, onGoBack }
 const SuccessVisual: React.FC<ReservationMessageProps> = (props) => {
+    const [unrecognizable, setUnrecognizable] = useState(false);
+
+    const showTranslation = () => {
+      return (!props.translation.includes("unrecognizable"));
+    }
+
     return (
       <div className="flex items-center justify-center ">
         <div className="h-full w-full  p-2">
@@ -22,15 +27,17 @@ const SuccessVisual: React.FC<ReservationMessageProps> = (props) => {
           <h2 className="mb-12 text-left text-lg">{props.date} at {props.time}</h2>
   
           <div className="mb-8">
-            <h3 className="mb-1 text-left text-lg font-semibold">{props.language}</h3>
+            <h3 className="mb-1 text-left text-lg font-semibold">{props.language}:</h3>
             <p className="text-left text-gray-700">"{props.translation}"</p>
           </div>
-  
-          <div className="mb-12">
-            <h3 className="mb-1 text-left text-lg font-semibold">English:</h3>
-            <p className="text-left text-gray-700">"{props.english}"</p>
-          </div>
-  
+
+          {showTranslation() &&
+            <div className="mb-12">
+              <h3 className="mb-1 text-left text-lg font-semibold">English:</h3>
+              <p className="text-left text-gray-700">"{props.english}"</p>
+            </div>
+          }
+    
           <div className="flex justify-center">
             <button onClick={props.onGoBack} className="rounded bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-700 focus:outline-none">
               Modify
